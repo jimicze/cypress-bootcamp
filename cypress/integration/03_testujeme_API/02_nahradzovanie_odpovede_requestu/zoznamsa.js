@@ -3,6 +3,11 @@
 it('zoznam dvoch boardov z fixture', () => {
 
   cy
+    .intercept('GET', '/api/boards', {
+      fixture: 'twoBoards'
+    }).as('boardList')
+
+  cy
     .visit('/');
 
   // úloha #1: použi súbor twoBoards.json z fixtures foldra, alebo si vytvor vlastný fixture súbor
@@ -10,6 +15,11 @@ it('zoznam dvoch boardov z fixture', () => {
 })
 
 it('žiaden board v zozname', () => {
+
+  cy
+    .intercept('GET', '/api/boards', {
+      body: []
+    }).as('boardList')
 
   cy
     .visit('/');
@@ -22,7 +32,25 @@ it('žiaden board v zozname', () => {
 it('chyba pri vytvoreni tasku', () => {
 
   cy
-    .visit('/');
+    .intercept('POST', '/api/tasks', {
+      forceNetworkError: true
+    })
+    .as('createTasks')
+
+  cy
+    .visit('/board/76547003119');
+
+    cy
+    .get('[data-cy="new-task"]')
+    .click()
+
+  cy
+    .get('[data-cy="task-input"]')
+    .type('new task{enter}')
+
+  cy
+    .get('#errorMessage')
+    .should('be.visible')
 
   // pridaj si ďalší .intercept() atribút, pomocou ktorého vyvoláš chybu pri vytvorení tasku
 

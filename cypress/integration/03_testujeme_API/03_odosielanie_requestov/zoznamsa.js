@@ -4,6 +4,15 @@
 it('vytvorenie boardu cez api', () => {
 
   cy
+    .request({
+      method: 'POST',
+      url: '/api/boards',
+      body: {
+        name: 'board vytvoreny cez api'
+      }
+    })
+
+  cy
     .visit('/')
 
 })
@@ -12,7 +21,17 @@ it('vytvorenie boardu cez api', () => {
 it('vytvorenie listu cez api', () => {
 
   cy
-    .visit() // pridaj si adresu svojho boardu
+    .request({
+      method: 'POST',
+      url: '/api/lists',
+      body: {
+        boardId: 76547003119,
+        title: 'list vytvoreny cez api'
+      }
+    })
+
+  cy
+    .visit('/board/76547003119') // pridaj si adresu svojho boardu
 
 })
 
@@ -20,12 +39,32 @@ it('vytvorenie listu cez api', () => {
 it('vytvorenie tasku cez api', () => {
 
   cy
-    .visit() // pridaj si adresu svojho boardu
+    .request({
+      method: 'POST',
+      url: '/api/tasks',
+      body: {
+        listId: 56244626608,
+        boardId: 76547003119,
+        title: 'list vytvoreny cez api'
+      }
+    })
+
+  cy
+    .visit('/board/76547003119') // pridaj si adresu svojho boardu
 
 })
 
 // úloha #4: premenuj board pomocou api
 it('premenovanie boardu cez api', () => {
+
+  cy
+    .request({
+      method: 'PATCH',
+      url: '/api/boards/76547003119',
+      body: {
+        name: 'renamed board'
+      }
+    })
 
   cy
     .visit('/')
@@ -34,6 +73,12 @@ it('premenovanie boardu cez api', () => {
 
 // úloha #5: vymaž board pomocou api
 it('premenovanie boardu cez api', () => {
+
+  cy
+    .request({
+      method: 'DELETE',
+      url: '/api/boards/76547003119'
+    })
 
   cy
     .visit('/')
