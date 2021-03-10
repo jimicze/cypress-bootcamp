@@ -7,5 +7,12 @@ it('otvorenie api nástrojov', () => {
 
   cy
     .component('root')
+    .then(app => {
+      app.toggleTools()
+    })
+
+  cy
+    .get('#tools')
+    .should('be.visible')
 
 });

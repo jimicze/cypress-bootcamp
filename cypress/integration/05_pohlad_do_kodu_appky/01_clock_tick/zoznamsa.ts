@@ -9,9 +9,31 @@ it('chybova hláška pri vytvorení listu', () => {
     .intercept('POST', '/api/lists', {
       forceNetworkError: true
     })
-    .as('boardCreate')
+    .as('listCreate')
 
   cy
-    .visit('/'); // doplň ID boardu
+    .visit('/board/12733783659'); // doplň ID boardu
+
+  cy
+    .get('[data-cy=add-list]')
+    .click()
+
+  cy
+    .clock()
+
+  cy
+    .get('[data-cy=add-list-input]')
+    .type('nový zoznam{enter}')
+
+  cy
+    .get('#errorMessage')
+    .should('be.visible')
+
+  cy
+    .tick(4000)
+
+  cy
+    .get('#errorMessage')
+    .should('not.be.visible')
 
 })
