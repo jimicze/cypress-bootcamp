@@ -5,6 +5,10 @@
   pomocou .only si môžeš spustiť jeden test
   ℹ️ medzi jednotlivými stavmi si budeš musieť aplikáciu vrátiť do pôvodného stavu
   pomocou klávesy F2 si otvor nástroje, ktoré Ti s tým pomôžu
+
+  https://stackoverflow.com/questions/55054337/cypress-run-only-one-test
+  https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Excluding-and-Including-Tests
+
 */
 
 // úloha #1: vytvor si nový zoznam (list) vo svojom boarde

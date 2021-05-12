@@ -34,5 +34,5 @@ it('označenie tasku', () => {
   cy
     .get('[data-cy="task-done"]')
     .check();
-
+    // https://stackoverflow.com/questions/15784554/how-to-uncheck-radio-button-javascript
 });

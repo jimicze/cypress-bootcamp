@@ -14,18 +14,22 @@ it('cypress príkazy', { baseUrl: "" }, () => {
 
   // označenie prvého elementu
   cy
-    .get('li')
+    .get('li').first();
 
   // označenie elementu pomocou indexu
   cy
-    .get('li')
+    .get('li').get(1);
 
   // hľadanie child elementu
   cy
-    .get('.list')
-
+    .get('.list').children();
+  cy
+    .get('.list').children().first(); -vyber prveho pod kolekci
   // hľadanie parent elementu
   cy
-    .get('.violet')
+    .get('.violet').parent();
+  
+  cy.
+    get('h1:contains(Shapes)'); -vnoreni selektoru
 
 });
