@@ -2,15 +2,36 @@
 
 beforeEach( () => {
 
+  cy.intercept('@AddTask'); //??????
+
+  cy.intercept('@Homepage');
+
+  cy.
+    intercept({
+      method: 'GET',
+      url: '/api/boards'
+  }).as('GetBoards'); //zrejmne pouziti aliasu je treba vzdy
+
   cy
-    .visit(); // ⚠️ doplň si adresu svojho boardu
+    .visit('/').as('Homepage'); // ⚠️ doplň si adresu svojho boardu
 
 });
 
-it('vytvorenie tasku', () => {
+it.only('vytvorenie tasku', () => {
 
   // úloha #1: vytvor si v teste nový task v zozname a odsleduj si request, ktorý sa udeje pri jeho vytvorení.
   // pomocou príkazov .its() a .should() si otestuj status alebo telo odpovede requestu
+
+  cy.
+    request({
+      method: 'POST',
+      url: 'api/lists',
+      body: //body je vlastne nahrazeni v pripade intercept, cize toto nebude fungovat
+      {
+        boardId: 79587092860,
+        title: "new api task"
+      }
+    }).as('AddTask'); //????
 
 })
 

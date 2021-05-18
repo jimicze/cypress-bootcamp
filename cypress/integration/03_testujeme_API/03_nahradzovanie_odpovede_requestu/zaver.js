@@ -17,7 +17,7 @@ it('chybova hláška pri vytvorení boardu', () => {
 
   cy
     .intercept('POST', '/api/boards', {
-      forceNetworkError: true
+      forceNetworkError: true //pouzije se jen pro dane api URL endpointu
     })
     .as('boardCreate')
 
